@@ -1,0 +1,215 @@
+════════════════════════════════════════════════════════════════════════
+                    HASHCATS GPU MINER - TERMINAL COMMANDS
+                    Copy these commands ONE BY ONE to your GPU
+════════════════════════════════════════════════════════════════════════
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 1: Install Python and Dependencies
+────────────────────────────────────────────────────────────────────────
+
+sudo apt update && sudo apt install python3 python3-pip -y && pip3 install web3 eth-account pycryptodome requests numpy
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 2: Check Your GPU (Optional but recommended)
+────────────────────────────────────────────────────────────────────────
+
+nvidia-smi
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 3: Install GPU Support (if nvidia-smi showed your GPU)
+────────────────────────────────────────────────────────────────────────
+
+pip3 install pycuda
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 4: Create the Miner File
+────────────────────────────────────────────────────────────────────────
+
+cat > miner.py << 'MINER_END'
+
+[PASTE THE ENTIRE hashcats_miner.py CODE HERE]
+
+MINER_END
+
+
+Alternatively, use this method:
+────────────────────────────────
+nano miner.py
+
+Then:
+1. Paste the hashcats_miner.py code
+2. Press Ctrl+X
+3. Press Y
+4. Press Enter
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 5: Run the Miner
+────────────────────────────────────────────────────────────────────────
+
+python3 miner.py
+
+
+When asked, enter your private key (starts with 0x)
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 6: Run in Background (so you can close terminal)
+────────────────────────────────────────────────────────────────────────
+
+nohup python3 miner.py > mining.log 2>&1 &
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 7: Watch the Logs
+────────────────────────────────────────────────────────────────────────
+
+tail -f mining.log
+
+
+Press Ctrl+C to stop watching (miner keeps running)
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 8: Check if Miner is Running
+────────────────────────────────────────────────────────────────────────
+
+ps aux | grep miner.py
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 9: Stop the Miner
+────────────────────────────────────────────────────────────────────────
+
+pkill -f miner.py
+
+
+────────────────────────────────────────────────────────────────────────
+COMMAND 10: Restart the Miner
+────────────────────────────────────────────────────────────────────────
+
+pkill -f miner.py && nohup python3 miner.py > mining.log 2>&1 &
+
+
+════════════════════════════════════════════════════════════════════════
+                              WHAT YOU'LL SEE
+════════════════════════════════════════════════════════════════════════
+
+When mining starts:
+───────────────────
+╔════════════════════════════════════════════════════════════════╗
+║                    HASHCATS MINER                              ║
+╚════════════════════════════════════════════════════════════════╝
+
+Wallet: 0x038d...f4C9
+✅ Connected!
+Starting mining operation...
+
+NETWORK
+  Difficulty:     48 bits
+  Cats Mined:     867
+  Next Cat Costs: 0.01736 ETH
+
+SPEED           CATS SEEN   EXPECTED WAIT   CHANCE / MIN
+737.80 MH/s         4.4T            4d 9h             0.1%
+
+MACHINE         GRAPHICS CARD
+  [GPU]          NVIDIA GeForce RTX 3090
+
+
+When you find a cat:
+────────────────────
+============================================================
+🎉 SOLUTION FOUND! 🎉
+============================================================
+Nonce: 4815162342
+Hash:  0x0000000000001ce74...
+Submitting solution to blockchain...
+Transaction sent: 0xabc123def456...
+✅ SUCCESS! Cat minted!
+
+
+════════════════════════════════════════════════════════════════════════
+                            QUICK REFERENCE
+════════════════════════════════════════════════════════════════════════
+
+Start mining:        python3 miner.py
+Background mode:     nohup python3 miner.py > mining.log 2>&1 &
+Watch logs:          tail -f mining.log
+Check status:        ps aux | grep miner.py
+Stop mining:         pkill -f miner.py
+View last 100 lines: tail -n 100 mining.log
+
+
+════════════════════════════════════════════════════════════════════════
+                          EXPECTED PERFORMANCE
+════════════════════════════════════════════════════════════════════════
+
+At 48 bits difficulty (current):
+
+GPU Model           Hashrate        Expected Time
+─────────────────────────────────────────────────────────────────────
+RTX 4090           ~1.2 GH/s            2-3 days
+RTX 3090           ~800 MH/s            4-5 days
+RTX 3080           ~600 MH/s            5-6 days
+RTX 3070           ~400 MH/s            7-9 days
+GTX 1080 Ti        ~300 MH/s           10-12 days
+GTX 1050 Ti        ~250 MH/s           12-15 days
+
+CPU (8 cores)       ~40 MH/s           230+ days
+
+
+Note: These are AVERAGES. Mining is probabilistic!
+You might get lucky and find one in hours, or take longer.
+
+
+════════════════════════════════════════════════════════════════════════
+                              TROUBLESHOOTING
+════════════════════════════════════════════════════════════════════════
+
+Problem: "command not found: pip3"
+Solution: sudo apt install python3-pip -y
+
+Problem: "No module named 'web3'"
+Solution: pip3 install web3 eth-account pycryptodome
+
+Problem: "Permission denied"
+Solution: Add "sudo" before the command
+
+Problem: "GPU not detected"  
+Solution: That's okay! CPU mining still works (just slower)
+
+Problem: "Connection refused"
+Solution: Check your internet and RPC endpoint
+
+Problem: "Insufficient funds"
+Solution: Add ETH to your wallet on Robinhood Chain
+
+
+════════════════════════════════════════════════════════════════════════
+                           IMPORTANT NOTES
+════════════════════════════════════════════════════════════════════════
+
+⚠️  Your private key should NEVER leave your GPU server
+⚠️  Make sure you have ETH on Robinhood Chain for gas
+⚠️  Mining is probabilistic - no guaranteed time
+⚠️  Keep your terminal session alive or use nohup
+⚠️  The miner refreshes chain data every 20 seconds
+⚠️  Found solutions are auto-submitted to blockchain
+⚠️  Entry price increases with each cat minted
+
+
+════════════════════════════════════════════════════════════════════════
+                              READY TO GO!
+════════════════════════════════════════════════════════════════════════
+
+1. Copy COMMAND 1 to install dependencies
+2. Copy COMMAND 4 to create the miner
+3. Copy COMMAND 5 or 6 to start mining
+4. Watch your hashrate and wait for cats! 🎉
+
+Good luck! 🍀

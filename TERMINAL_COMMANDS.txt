@@ -1,0 +1,144 @@
+═══════════════════════════════════════════════════════════════
+  HASHCATS GPU MINER - COPY/PASTE COMMANDS FOR TERMINAL
+═══════════════════════════════════════════════════════════════
+
+📋 RUN THESE COMMANDS ONE BY ONE ON YOUR GPU SERVER:
+
+
+STEP 1: CHECK YOUR GPU
+────────────────────────────────────────────────────────────
+nvidia-smi
+
+
+STEP 2: INSTALL DEPENDENCIES (Ubuntu/Debian)
+────────────────────────────────────────────────────────────
+sudo apt update && sudo apt install python3 python3-pip -y
+
+
+STEP 3: INSTALL PYTHON PACKAGES
+────────────────────────────────────────────────────────────
+pip3 install web3 eth-account pycryptodome requests numpy
+
+
+STEP 4: INSTALL GPU ACCELERATION (if nvidia-smi worked)
+────────────────────────────────────────────────────────────
+pip3 install pycuda
+
+
+STEP 5: CREATE THE MINER FILE
+────────────────────────────────────────────────────────────
+nano hashcats_miner.py
+
+Then paste the entire hashcats_miner.py code
+Press: Ctrl+X, then Y, then Enter to save
+
+
+STEP 6: RUN THE MINER
+────────────────────────────────────────────────────────────
+python3 hashcats_miner.py
+
+Enter your private key when asked
+
+
+STEP 7: RUN IN BACKGROUND (Optional - keeps running when you disconnect)
+────────────────────────────────────────────────────────────
+nohup python3 hashcats_miner.py > miner.log 2>&1 &
+
+
+STEP 8: CHECK THE LOGS (if running in background)
+────────────────────────────────────────────────────────────
+tail -f miner.log
+
+
+STEP 9: CHECK IF MINER IS RUNNING
+────────────────────────────────────────────────────────────
+ps aux | grep hashcats
+
+
+STEP 10: STOP THE MINER
+────────────────────────────────────────────────────────────
+pkill -f hashcats_miner.py
+
+
+═══════════════════════════════════════════════════════════════
+  QUICK ONE-LINE SETUP (All steps 1-4 combined)
+═══════════════════════════════════════════════════════════════
+
+sudo apt update && sudo apt install python3 python3-pip -y && pip3 install web3 eth-account pycryptodome requests numpy pycuda
+
+
+═══════════════════════════════════════════════════════════════
+  TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+If "command not found":
+    sudo apt install python3-pip -y
+
+If "No module named 'web3'":
+    pip3 install --user web3 eth-account pycryptodome requests numpy
+
+If "Permission denied":
+    Add sudo before the command
+
+If GPU not working:
+    The miner will use CPU automatically (slower but still works)
+
+Check Python version (needs 3.7+):
+    python3 --version
+
+
+═══════════════════════════════════════════════════════════════
+  WHAT YOU'LL SEE WHEN MINING
+═══════════════════════════════════════════════════════════════
+
+✅ Wallet Address: 0x038d...f4C9
+✅ Connected to Robinhood Chain
+✅ GPU Detected: NVIDIA GeForce RTX 3090
+
+NETWORK
+  Difficulty:     48 bits
+  Cats Mined:     867
+  Next Cat Costs: 0.01736 ETH
+
+TARGET TO BEAT                          48 leading zero bits
+  0x0000000000001ce74f965da1fb4c88aab654e838f31a21e7ea40320256d94a17fbd0
+
+THE CLOSEST ONE YET                     39 / 48 bits
+  0x00000000001ce74f965da1fb4c88aab654e838f31a21e7ea40320256d94a17fbd0
+
+SPEED           CATS SEEN   EXPECTED WAIT   CHANCE / MIN
+737.80 MH/s         4.4T            4d 9h             0%
+
+MACHINE         GRAPHICS CARD
+  [GPU]          NVIDIA GeForce RTX 3090
+
+Hashes: 15,840,234,567 | Runtime: 5h 23m
+
+
+═══════════════════════════════════════════════════════════════
+  WHEN YOU FIND A CAT 🎉
+═══════════════════════════════════════════════════════════════
+
+============================================================
+🎉 SOLUTION FOUND! 🎉
+============================================================
+Nonce: 4815162342
+Hash:  0x00000000000001ce74f965da1fb4c88aab654e838f31...
+Submitting solution to blockchain...
+Transaction sent: 0xabc123...
+Waiting for confirmation...
+✅ SUCCESS! Cat minted!
+
+
+═══════════════════════════════════════════════════════════════
+  NEED HELP?
+═══════════════════════════════════════════════════════════════
+
+1. Make sure you have ETH on Robinhood Chain for gas
+2. Private key should start with 0x (if not, add it)
+3. Keep the terminal open or use nohup for background
+4. Check miner.log file if running in background
+5. The miner auto-refreshes data every 20 seconds
+
+
+═══════════════════════════════════════════════════════════════

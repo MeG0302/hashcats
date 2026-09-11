@@ -1,0 +1,94 @@
+════════════════════════════════════════════════════════════════════════
+                    PUSH TO GITHUB - STEP BY STEP
+════════════════════════════════════════════════════════════════════════
+
+
+METHOD 1: USING GITHUB WEBSITE (EASIEST)
+────────────────────────────────────────────────────────────────────────
+
+Step 1: Create Repository on GitHub
+───────────────────────────────────
+1. Go to: https://github.com/new
+2. Repository name: hashcats-miner
+3. Description: GPU/CPU miner for Hashcats NFTs on Robinhood Chain
+4. Set to: Public (or Private if you prefer)
+5. Do NOT initialize with README (we already have one)
+6. Click "Create repository"
+
+
+Step 2: Push Your Code
+──────────────────────
+After creating the repo, GitHub will show you commands. Use these:
+
+cd "d:\hashcats-miner"
+
+git remote add origin https://github.com/YOUR_USERNAME/hashcats-miner.git
+
+git branch -M main
+
+git push -u origin main
+
+
+Replace YOUR_USERNAME with your actual GitHub username!
+
+
+Step 3: Done! 
+─────────────
+Your repository will be live at:
+https://github.com/YOUR_USERNAME/hashcats-miner
+
+
+════════════════════════════════════════════════════════════════════════
+
+
+METHOD 2: ONE-LINE COMMANDS (After Step 1 above)
+────────────────────────────────────────────────────────────────────────
+
+cd "d:\hashcats-miner" ; git remote add origin https://github.com/YOUR_USERNAME/hashcats-miner.git ; git branch -M main ; git push -u origin main
+
+
+════════════════════════════════════════════════════════════════════════
+
+
+TO DOWNLOAD ON YOUR GPU SERVER:
+────────────────────────────────────────────────────────────────────────
+
+Once pushed to GitHub, on your GPU server run:
+
+git clone https://github.com/YOUR_USERNAME/hashcats-miner.git
+cd hashcats-miner
+pip3 install -r requirements.txt
+python3 hashcats_miner.py
+
+
+That's it! All files will be downloaded automatically.
+
+
+════════════════════════════════════════════════════════════════════════
+
+
+WHAT'S ALREADY DONE:
+────────────────────────────────────────────────────────────────────────
+
+✅ Git repository initialized
+✅ All files added and committed
+✅ .gitignore created (protects your private keys!)
+✅ Ready to push to GitHub
+
+All you need to do is:
+1. Create the repo on GitHub
+2. Run the git remote add command with your username
+3. Run git push
+
+
+════════════════════════════════════════════════════════════════════════
+
+
+NEED YOUR GITHUB USERNAME?
+────────────────────────────────────────────────────────────────────────
+
+If you don't remember it, go to: https://github.com
+It's shown in the top right corner when logged in.
+
+
+════════════════════════════════════════════════════════════════════════

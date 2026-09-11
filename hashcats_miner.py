@@ -26,7 +26,32 @@ class Colors:
 
 # Contract addresses on Robinhood Chain
 HASHCATS_CONTRACT = "0xCA75DF55Cc9C476DB27a7375D1fc8E794cf80721"
-RPC_URL = "https://rpc.robinhood.com"  # Robinhood Chain RPC
+
+# Try multiple RPC endpoints (official Robinhood Chain mainnet)
+RPC_URLS = [
+    "https://rpc.mainnet.chain.robinhood.com",
+    "https://robinhood-mainnet.g.alchemy.com/v2/demo",
+]
+
+def get_working_rpc():
+    """Test RPC endpoints and return the first working one"""
+    for rpc in RPC_URLS:
+        try:
+            print(f"{Colors.YELLOW}Testing: {rpc}{Colors.RESET}")
+            w3 = Web3(Web3.HTTPProvider(rpc, request_kwargs={'timeout': 15}))
+            if w3.is_connected():
+                print(f"{Colors.GREEN}✅ Connected to: {rpc}{Colors.RESET}")
+                return rpc
+        except Exception as e:
+            print(f"{Colors.RED}❌ {rpc} failed: {str(e)[:50]}{Colors.RESET}")
+            continue
+    return None
+
+RPC_URL = get_working_rpc()
+if not RPC_URL:
+    print(f"{Colors.RED}Failed to connect to any RPC endpoint!{Colors.RESET}")
+    print(f"{Colors.YELLOW}Try using an Alchemy API key or other provider{Colors.RESET}")
+    RPC_URL = RPC_URLS[0]  # Default fallback
 
 # ABI for the mining function
 HASHCATS_ABI = [
